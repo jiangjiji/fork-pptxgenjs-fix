@@ -1,7 +1,8 @@
-<h1 align="center">PptxGenJS</h1>
+<h1 align="center">PptxGenJS-pro</h1>
 <h5 align="center">
   Create JavaScript PowerPoint Presentations
 </h5>
+<h5 align="center">forked by <a href="https://github.com/gitbrent/PptxGenJS/">PptxGenJS</a></h5>
 <p align="center">
   <a href="https://github.com/gitbrent/PptxGenJS/">
     <img alt="PptxGenJS Sample Slides" title="PptxGenJS Sample Slides" src="https://raw.githubusercontent.com/gitbrent/PptxGenJS/gh-pages/img/readme_banner.png"/>
@@ -88,13 +89,7 @@ Visit the demos page to create a simple presentation to see how easy it is to us
 [PptxGenJS NPM Home](https://www.npmjs.com/package/pptxgenjs)
 
 ```bash
-npm install pptxgenjs --save
-```
-
-## Yarn
-
-```bash
-yarn add pptxgenjs
+npm install pptxgenjs-pro --save
 ```
 
 ## CDN
