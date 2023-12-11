@@ -1,4 +1,4 @@
-/* PptxGenJS 3.14.1 @ 2023-12-11T12:52:08.811Z */
+/* PptxGenJS 3.14.2 @ 2023-12-11T13:34:32.788Z */
 'use strict';
 
 var JSZip = require('jszip');
@@ -105,7 +105,7 @@ var DEF_PRES_LAYOUT_NAME = 'DEFAULT';
 var DEF_SHAPE_LINE_COLOR = '333333';
 var DEF_SHAPE_SHADOW = { type: 'outer', blur: 3, offset: 23000 / 12700, angle: 90, color: '000000', opacity: 0.35, rotateWithShape: true };
 var DEF_SLIDE_MARGIN_IN = [0.5, 0.5, 0.5, 0.5]; // TRBL-style
-var DEF_TEXT_SHADOW = { type: 'outer', blur: 8, offset: 4, angle: 270, color: '000000', opacity: 0.75 };
+var DEF_TEXT_SHADOW = { type: 'outer', blur: 0, offset: 0, angle: 0, color: '000000', opacity: 0.75 };
 var DEF_TEXT_GLOW = { size: 8, color: 'FFFFFF', opacity: 0.75 };
 var AXIS_ID_VALUE_PRIMARY = '2094734552';
 var AXIS_ID_VALUE_SECONDARY = '2094734553';
@@ -809,7 +809,7 @@ function createColorElement(colorStr, innerElements) {
 }
 function createTextShadow(options) {
     var strXml = '';
-    var nOptions = __assign(__assign({}, options), { type: 'outer', offset: valToPts(options.offset || 4), angle: Math.round((options.angle || 270) * 60000), opacity: Math.round((options.opacity || 0.75) * 100000), color: options.color || DEF_TEXT_SHADOW.color });
+    var nOptions = __assign(__assign({}, options), { type: 'outer', offset: valToPts(options.offset || 0), angle: Math.round((options.angle || 0) * 60000), opacity: Math.round((options.opacity || 0.75) * 100000), color: options.color || DEF_TEXT_SHADOW.color });
     strXml += " <a:outerShdw ".concat(nOptions.type === 'outer' ? 'sx="100000" sy="100000" kx="0" ky="0" algn="bl" rotWithShape="0"' : '', " blurRad=\"").concat(nOptions.blur, "\" dist=\"").concat(nOptions.offset, "\" dir=\"").concat(nOptions.angle, "\">");
     strXml += " <a:srgbClr val=\"".concat(nOptions.color, "\">");
     strXml += " <a:alpha val=\"".concat(nOptions.opacity, "\"/></a:srgbClr>");

@@ -165,8 +165,8 @@ export function createTextShadow (options: ShadowProps): string {
 	const nOptions = {
 		...options,
 		type: 'outer',
-		offset: valToPts(options.offset || 4),
-		angle: Math.round((options.angle || 270) * 60000),
+		offset: valToPts(options.offset || 0),
+		angle: Math.round((options.angle || 0) * 60000),
 		opacity: Math.round((options.opacity || 0.75) * 100000),
 		color: options.color || DEF_TEXT_SHADOW.color
 	}
