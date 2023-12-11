@@ -1,4 +1,4 @@
-/* PptxGenJS 3.13.0-beta.1 @ 2023-11-23T12:40:58.506Z */
+/* PptxGenJS 3.14.1 @ 2023-12-11T12:52:08.811Z */
 'use strict';
 
 var JSZip = require('jszip');
@@ -895,7 +895,7 @@ function correctShadowOptions(ShadowProps) {
         // A: REALITY-CHECK
         if (isNaN(Number(ShadowProps.angle)) || ShadowProps.angle < 0 || ShadowProps.angle > 359) {
             console.warn('Warning: shadow.angle can only be 0-359');
-            ShadowProps.angle = 270;
+            ShadowProps.angle = 0;
         }
         // B: ROBUST: Cast any type of valid arg to int: '12', 12.3, etc. -> 12
         ShadowProps.angle = Math.round(Number(ShadowProps.angle));
@@ -5106,7 +5106,7 @@ function slideObjectToXml(slide) {
     strSlideXml += '<a:chOff x="0" y="0"/><a:chExt cx="0" cy="0"/></a:xfrm></p:grpSpPr>';
     // STEP 3: Loop over all Slide.data objects and add them to this slide
     slide._slideObjects.forEach(function (slideItemObj, idx) {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _l, _m, _o;
         var x = 0;
         var y = 0;
         var cx = getSmartParseNumber('75%', 'X', slide._presLayout);
@@ -5577,10 +5577,10 @@ function slideObjectToXml(slide) {
                 // EFFECTS > SHADOW: REF: @see http://officeopenxml.com/drwSp-effects.php
                 if (slideItemObj.options.shadow && slideItemObj.options.shadow.type !== 'none') {
                     slideItemObj.options.shadow.type = slideItemObj.options.shadow.type || 'outer';
-                    slideItemObj.options.shadow.blur = valToPts(slideItemObj.options.shadow.blur || 8);
-                    slideItemObj.options.shadow.offset = valToPts(slideItemObj.options.shadow.offset || 4);
-                    slideItemObj.options.shadow.angle = Math.round((slideItemObj.options.shadow.angle || 270) * 60000);
-                    slideItemObj.options.shadow.opacity = Math.round((slideItemObj.options.shadow.opacity || 0.75) * 100000);
+                    slideItemObj.options.shadow.blur = valToPts((_j = slideItemObj.options.shadow.blur) !== null && _j !== void 0 ? _j : 0);
+                    slideItemObj.options.shadow.offset = valToPts((_l = slideItemObj.options.shadow.offset) !== null && _l !== void 0 ? _l : 0);
+                    slideItemObj.options.shadow.angle = Math.round(((_m = slideItemObj.options.shadow.angle) !== null && _m !== void 0 ? _m : 0) * 60000);
+                    slideItemObj.options.shadow.opacity = Math.round(((_o = slideItemObj.options.shadow.opacity) !== null && _o !== void 0 ? _o : 0) * 100000);
                     slideItemObj.options.shadow.color = slideItemObj.options.shadow.color || DEF_TEXT_SHADOW.color;
                     strSlideXml += '<a:effectLst>';
                     strSlideXml += "<a:".concat(slideItemObj.options.shadow.type, "Shdw ").concat(slideItemObj.options.shadow.type === 'outer' ? 'sx="100000" sy="100000" kx="0" ky="0" algn="bl" rotWithShape="0"' : '', " blurRad=\"").concat(slideItemObj.options.shadow.blur, "\" dist=\"").concat(slideItemObj.options.shadow.offset, "\" dir=\"").concat(slideItemObj.options.shadow.angle, "\">");
