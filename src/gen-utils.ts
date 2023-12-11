@@ -263,7 +263,7 @@ export function correctShadowOptions (ShadowProps: ShadowProps): ShadowProps | u
 		// A: REALITY-CHECK
 		if (isNaN(Number(ShadowProps.angle)) || ShadowProps.angle < 0 || ShadowProps.angle > 359) {
 			console.warn('Warning: shadow.angle can only be 0-359')
-			ShadowProps.angle = 270
+			ShadowProps.angle = 0
 		}
 
 		// B: ROBUST: Cast any type of valid arg to int: '12', 12.3, etc. -> 12
