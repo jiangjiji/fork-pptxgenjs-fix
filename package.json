@@ -1,12 +1,12 @@
 {
-  "name": "pptxgenjs-pro",
+  "name": "pptxgenjs-fix",
   "version": "3.14.4",
   "author": {
-    "name": "Maxpsc",
-    "url": "https://github.com/Maxpsc"
+    "name": "Jiangjiji",
+    "url": "https://github.com/jiangjiji"
   },
   "description": "Create JavaScript PowerPoint Presentations, forked from gitbrent/PptxGenJS",
-  "homepage": "https://github.com/Maxpsc/PptxGenJS",
+  "homepage": "https://github.com/jiangjiji/PptxGenJS-Fix",
   "license": "MIT",
   "main": "dist/pptxgen.cjs.js",
   "module": "dist/pptxgen.es.js",
@@ -64,7 +64,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gitbrent/PptxGenJS.git"
+    "url": "git+https://github.com/jiangjiji/PptxGenJS-Fix.git"
   },
   "keywords": [
     "html-to-powerpoint",
@@ -84,6 +84,6 @@
     "typescript-powerpoint"
   ],
   "bugs": {
-    "url": "https://github.com/gitbrent/PptxGenJS/issues"
+    "url": "https://github.com/jiangjiji/PptxGenJS-Fix/issues"
   }
 }
