@@ -2,7 +2,15 @@
  * PptxGenJS Interfaces
  */
 
-import { CHART_NAME, PLACEHOLDER_TYPE, SHAPE_NAME, SLIDE_OBJECT_TYPES, TEXT_HALIGN, TEXT_VALIGN, WRITE_OUTPUT_TYPE } from './core-enums'
+import {
+	CHART_NAME,
+	PLACEHOLDER_TYPE,
+	SHAPE_NAME,
+	SLIDE_OBJECT_TYPES,
+	TEXT_HALIGN,
+	TEXT_VALIGN,
+	WRITE_OUTPUT_TYPE,
+} from './core-enums'
 
 // Core Types
 // ==========
@@ -83,7 +91,17 @@ export interface BackgroundProps extends DataOrPathProps, ShapeFillProps {
  * @example 'FF3399'
  */
 export type HexColor = string
-export type ThemeColor = 'tx1' | 'tx2' | 'bg1' | 'bg2' | 'accent1' | 'accent2' | 'accent3' | 'accent4' | 'accent5' | 'accent6'
+export type ThemeColor =
+	| 'tx1'
+	| 'tx2'
+	| 'bg1'
+	| 'bg2'
+	| 'accent1'
+	| 'accent2'
+	| 'accent3'
+	| 'accent4'
+	| 'accent5'
+	| 'accent6'
 export type Color = HexColor | ThemeColor
 export type Margin = number | [number, number, number, number]
 export type HAlign = 'left' | 'center' | 'right' | 'justify'
@@ -208,7 +226,15 @@ export interface ShapeLineProps extends ShapeFillProps {
 	 * Dash type
 	 * @default 'solid'
 	 */
-	dashType?: 'solid' | 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'sysDash' | 'sysDot'
+	dashType?:
+	| 'solid'
+	| 'dash'
+	| 'dashDot'
+	| 'lgDash'
+	| 'lgDashDot'
+	| 'lgDashDotDot'
+	| 'sysDash'
+	| 'sysDot'
 	/**
 	 * Begin arrow type
 	 * @since v3.3.0
@@ -226,7 +252,15 @@ export interface ShapeLineProps extends ShapeFillProps {
 	 * Dash type
 	 * @deprecated v3.3.0 - use `dashType`
 	 */
-	lineDash?: 'solid' | 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'sysDash' | 'sysDot'
+	lineDash?:
+	| 'solid'
+	| 'dash'
+	| 'dashDot'
+	| 'lgDash'
+	| 'lgDashDot'
+	| 'lgDashDotDot'
+	| 'sysDash'
+	| 'sysDot'
 	/**
 	 * @deprecated v3.3.0 - use `beginArrowType`
 	 */
@@ -273,28 +307,28 @@ export interface TextBaseProps {
 	| boolean
 	| {
 		/**
-		 * Bullet type
-		 * @default bullet
-		 */
+				 * Bullet type
+				 * @default bullet
+				 */
 		type?: 'bullet' | 'number'
 		/**
-		 * Bullet character code (unicode)
-		 * @since v3.3.0
-		 * @example '25BA' // 'BLACK RIGHT-POINTING POINTER' (U+25BA)
-		 */
+				 * Bullet character code (unicode)
+				 * @since v3.3.0
+				 * @example '25BA' // 'BLACK RIGHT-POINTING POINTER' (U+25BA)
+				 */
 		characterCode?: string
 		/**
-		 * Indentation (space between bullet and text) (points)
-		 * @since v3.3.0
-		 * @default 27 // DEF_BULLET_MARGIN
-		 * @example 10 // Indents text 10 points from bullet
-		 */
+				 * Indentation (space between bullet and text) (points)
+				 * @since v3.3.0
+				 * @default 27 // DEF_BULLET_MARGIN
+				 * @example 10 // Indents text 10 points from bullet
+				 */
 		indent?: number
 		/**
-		 * Number type
-		 * @since v3.3.0
-		 * @example 'romanLcParenR' // roman numerals lower-case with paranthesis right
-		 */
+				 * Number type
+				 * @since v3.3.0
+				 * @example 'romanLcParenR' // roman numerals lower-case with paranthesis right
+				 */
 		numberType?:
 		| 'alphaLcParenBoth'
 		| 'alphaLcParenR'
@@ -313,35 +347,35 @@ export interface TextBaseProps {
 		| 'romanUcParenR'
 		| 'romanUcPeriod'
 		/**
-		 * Number bullets start at
-		 * @since v3.3.0
-		 * @default 1
-		 * @example 10 // numbered bullets start with 10
-		 */
+				 * Number bullets start at
+				 * @since v3.3.0
+				 * @default 1
+				 * @example 10 // numbered bullets start with 10
+				 */
 		numberStartAt?: number
 
 		// DEPRECATED
 
 		/**
-		 * Bullet code (unicode)
-		 * @deprecated v3.3.0 - use `characterCode`
-		 */
+				 * Bullet code (unicode)
+				 * @deprecated v3.3.0 - use `characterCode`
+				 */
 		code?: string
 		/**
-		 * Margin between bullet and text
-		 * @since v3.2.1
-		 * @deplrecated v3.3.0 - use `indent`
-		 */
+				 * Margin between bullet and text
+				 * @since v3.2.1
+				 * @deplrecated v3.3.0 - use `indent`
+				 */
 		marginPt?: number
 		/**
-		 * Number to start with (only applies to type:number)
-		 * @deprecated v3.3.0 - use `numberStartAt`
-		 */
+				 * Number to start with (only applies to type:number)
+				 * @deprecated v3.3.0 - use `numberStartAt`
+				 */
 		startAt?: number
 		/**
-		 * Number type
-		 * @deprecated v3.3.0 - use `numberType`
-		 */
+				 * Number type
+				 * @deprecated v3.3.0 - use `numberType`
+				 */
 		style?: string
 	}
 	/**
@@ -476,7 +510,10 @@ export interface ThemeProps {
 // image / media ==================================================================================
 export type MediaType = 'audio' | 'online' | 'video'
 
-export interface ImageProps extends PositionProps, DataOrPathProps, ObjectNameProps {
+export interface ImageProps
+	extends PositionProps,
+	DataOrPathProps,
+	ObjectNameProps {
 	/**
 	 * Alt Text value ("How would you describe this object and its contents to someone who is blind?")
 	 * - PowerPoint: [right-click on an image] > "Edit Alt Text..."
@@ -571,7 +608,10 @@ export interface ImageProps extends PositionProps, DataOrPathProps, ObjectNamePr
  * Add media (audio/video) to slide
  * @requires either `link` or `path`
  */
-export interface MediaProps extends PositionProps, DataOrPathProps, ObjectNameProps {
+export interface MediaProps
+	extends PositionProps,
+	DataOrPathProps,
+	ObjectNameProps {
 	/**
 	 * Media type
 	 * - Use 'online' to embed a YouTube video (only supported in recent versions of PowerPoint)
@@ -667,8 +707,22 @@ export interface ShapeProps extends PositionProps, ObjectNameProps {
 	 */
 	points?: Array<
 	| { x: Coord, y: Coord, moveTo?: boolean }
-	| { x: Coord, y: Coord, curve: { type: 'arc', hR: Coord, wR: Coord, stAng: number, swAng: number } }
-	| { x: Coord, y: Coord, curve: { type: 'cubic', x1: Coord, y1: Coord, x2: Coord, y2: Coord } }
+	| {
+		x: Coord
+		y: Coord
+		curve: {
+			type: 'arc'
+			hR: Coord
+			wR: Coord
+			stAng: number
+			swAng: number
+		}
+	}
+	| {
+		x: Coord
+		y: Coord
+		curve: { type: 'cubic', x1: Coord, y1: Coord, x2: Coord, y2: Coord }
+	}
 	| { x: Coord, y: Coord, curve: { type: 'quadratic', x1: Coord, y1: Coord } }
 	| { close: true }
 	>
@@ -698,7 +752,15 @@ export interface ShapeProps extends PositionProps, ObjectNameProps {
 	/**
 	 * @deprecated v3.3.0
 	 */
-	lineDash?: 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'solid' | 'sysDash' | 'sysDot'
+	lineDash?:
+	| 'dash'
+	| 'dashDot'
+	| 'lgDash'
+	| 'lgDashDot'
+	| 'lgDashDotDot'
+	| 'solid'
+	| 'sysDash'
+	| 'sysDot'
 	/**
 	 * @deprecated v3.3.0
 	 */
@@ -844,7 +906,10 @@ export interface TableCellProps extends TextBaseProps {
 	 */
 	rowspan?: number
 }
-export interface TableProps extends PositionProps, TextBaseProps, ObjectNameProps {
+export interface TableProps
+	extends PositionProps,
+	TextBaseProps,
+	ObjectNameProps {
 	_arrObjTabHeadRows?: TableRow[]
 
 	/**
@@ -975,7 +1040,11 @@ export interface TextGlowProps {
 	size: number
 }
 
-export interface TextPropsOptions extends PositionProps, DataOrPathProps, TextBaseProps, ObjectNameProps {
+export interface TextPropsOptions
+	extends PositionProps,
+	DataOrPathProps,
+	TextBaseProps,
+	ObjectNameProps {
 	_bodyProp?: {
 		// Note: Many of these duplicated as user options are transformed to _bodyProp options for XML processing
 		autoFit?: boolean
@@ -985,7 +1054,14 @@ export interface TextPropsOptions extends PositionProps, DataOrPathProps, TextBa
 		rIns?: number
 		tIns?: number
 		bIns?: number
-		vert?: 'eaVert' | 'horz' | 'mongolianVert' | 'vert' | 'vert270' | 'wordArtVert' | 'wordArtVertRtl'
+		vert?:
+		| 'eaVert'
+		| 'horz'
+		| 'mongolianVert'
+		| 'vert'
+		| 'vert270'
+		| 'wordArtVert'
+		| 'wordArtVertRtl'
 		wrap?: boolean
 	}
 	_lineIdx?: number
@@ -1090,7 +1166,14 @@ export interface TextPropsOptions extends PositionProps, DataOrPathProps, TextBa
 	 * @default middle
 	 */
 	valign?: VAlign
-	vert?: 'eaVert' | 'horz' | 'mongolianVert' | 'vert' | 'vert270' | 'wordArtVert' | 'wordArtVertRtl'
+	vert?:
+	| 'eaVert'
+	| 'horz'
+	| 'mongolianVert'
+	| 'vert'
+	| 'vert270'
+	| 'wordArtVert'
+	| 'wordArtVertRtl'
 	/**
 	 * Text wrap
 	 * @since v3.3.0
@@ -1117,7 +1200,15 @@ export interface TextPropsOptions extends PositionProps, DataOrPathProps, TextBa
 	 * Dash type
 	 * @deprecated v3.3.0 - use `line.dashType`
 	 */
-	lineDash?: 'solid' | 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'sysDash' | 'sysDot'
+	lineDash?:
+	| 'solid'
+	| 'dash'
+	| 'dashDot'
+	| 'lgDash'
+	| 'lgDashDot'
+	| 'lgDashDotDot'
+	| 'sysDash'
+	| 'sysDot'
 	/**
 	 * @deprecated v3.3.0 - use `line.beginArrowType`
 	 */
@@ -1406,7 +1497,16 @@ export interface IChartPropsAxisVal {
 	 */
 	valAxes?: IChartPropsAxisVal[]
 	valAxisCrossesAt?: number | 'autoZero'
-	valAxisDisplayUnit?: 'billions' | 'hundredMillions' | 'hundreds' | 'hundredThousands' | 'millions' | 'tenMillions' | 'tenThousands' | 'thousands' | 'trillions'
+	valAxisDisplayUnit?:
+	| 'billions'
+	| 'hundredMillions'
+	| 'hundreds'
+	| 'hundredThousands'
+	| 'millions'
+	| 'tenMillions'
+	| 'tenThousands'
+	| 'thousands'
+	| 'trillions'
 	valAxisDisplayUnitLabel?: boolean
 	valAxisHidden?: boolean
 	valAxisLabelColor?: string
@@ -1486,13 +1586,28 @@ export interface IChartPropsChartLine {
 	 * - line dash type
 	 * @default solid
 	 */
-	lineDash?: 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'solid' | 'sysDash' | 'sysDot'
+	lineDash?:
+	| 'dash'
+	| 'dashDot'
+	| 'lgDash'
+	| 'lgDashDot'
+	| 'lgDashDotDot'
+	| 'solid'
+	| 'sysDash'
+	| 'sysDot'
 	/**
 	 * MS-PPT > Chart format > Format Data Series > Marker Options > Built-in > Type
 	 * - marker type
 	 * @default circle
 	 */
-	lineDataSymbol?: 'circle' | 'dash' | 'diamond' | 'dot' | 'none' | 'square' | 'triangle'
+	lineDataSymbol?:
+	| 'circle'
+	| 'dash'
+	| 'diamond'
+	| 'dot'
+	| 'none'
+	| 'square'
+	| 'triangle'
 	/**
 	 * MS-PPT > Chart format > Format Data Series > [Marker Options] > Border > Color
 	 * - border color
@@ -1560,7 +1675,15 @@ export interface IChartPropsDataLabel {
 	 */
 	dataLabelFormatCode?: string
 	dataLabelFormatScatter?: 'custom' | 'customXY' | 'XY'
-	dataLabelPosition?: 'b' | 'bestFit' | 'ctr' | 'l' | 'r' | 't' | 'inEnd' | 'outEnd'
+	dataLabelPosition?:
+	| 'b'
+	| 'bestFit'
+	| 'ctr'
+	| 'l'
+	| 'r'
+	| 't'
+	| 'inEnd'
+	| 'outEnd'
 }
 export interface IChartPropsDataTable {
 	dataTableFontSize?: number
@@ -1746,7 +1869,8 @@ export interface SlideMasterProps {
 	background?: BackgroundProps
 	margin?: Margin
 	slideNumber?: SlideNumberProps
-	objects?: Array< | { chart: IChartOpts }
+	objects?: Array<
+	| { chart: IChartOpts }
 	| { image: ImageProps }
 	| { line: ShapeProps }
 	| { rect: ShapeProps }
@@ -1755,19 +1879,25 @@ export interface SlideMasterProps {
 		placeholder: {
 			options: PlaceholderProps
 			/**
-			 * Text to be shown in placeholder (shown until user focuses textbox or adds text)
-			 * - Leave blank to have powerpoint show default phrase (ex: "Click to add title")
-			 */
+					 * Text to be shown in placeholder (shown until user focuses textbox or adds text)
+					 * - Leave blank to have powerpoint show default phrase (ex: "Click to add title")
+					 */
 			text?: string
 		}
-	}>
+	}
+	>
 
 	/**
 	 * @deprecated v3.3.0 - use `background`
 	 */
 	bkgd?: string | BackgroundProps
 }
-export interface ObjectOptions extends ImageProps, PositionProps, ShapeProps, TableCellProps, TextPropsOptions {
+export interface ObjectOptions
+	extends ImageProps,
+	PositionProps,
+	ShapeProps,
+	TableCellProps,
+	TextPropsOptions {
 	_placeholderIdx?: number
 	_placeholderType?: PLACEHOLDER_TYPE
 
@@ -1808,7 +1938,11 @@ export interface PresSlide extends SlideBaseProps {
 	_slideLayout: SlideLayout
 	_slideId: number
 
-	addChart: (type: CHART_NAME | IChartMulti[], data: IOptsChartData[], options?: IChartOpts) => PresSlide
+	addChart: (
+		type: CHART_NAME | IChartMulti[],
+		data: IOptsChartData[],
+		options?: IChartOpts,
+	) => PresSlide
 	addImage: (options: ImageProps) => PresSlide
 	addMedia: (options: MediaProps) => PresSlide
 	addNotes: (notes: string) => PresSlide
@@ -1877,6 +2011,10 @@ export interface IPresentationProps extends PresentationProps {
 export interface AddFontProps {
 	typeface: string
 	fontBlob: Blob
+	isRegular: boolean
+	isItalic: boolean
+	isBold: boolean
+	isBoldItalic: boolean
 }
 
 export interface FontInfo extends AddFontProps {
