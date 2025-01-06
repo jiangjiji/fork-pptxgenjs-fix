@@ -1,4 +1,4 @@
-/* PptxGenJS 3.14.5 @ 2025-01-06T12:08:56.850Z */
+/* PptxGenJS 3.14.6 @ 2025-01-06T12:15:50.346Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -6978,8 +6978,8 @@ function makeXmlPresentation(pres) {
                 mergeFont = { fontName: font.typeface };
                 mergeFontList.push(mergeFont);
             }
-            if (font.isRegular) {
-                mergeFont.fontRegular = font;
+            if (font.isBold && font.isItalic) {
+                mergeFont.fontBoldItalic = font;
             }
             else if (font.isBold) {
                 mergeFont.fontBold = font;
@@ -6987,8 +6987,8 @@ function makeXmlPresentation(pres) {
             else if (font.isItalic) {
                 mergeFont.fontItalic = font;
             }
-            else if (font.isBoldItalic) {
-                mergeFont.fontBoldItalic = font;
+            else {
+                mergeFont.fontRegular = font;
             }
         });
         return mergeFontList;

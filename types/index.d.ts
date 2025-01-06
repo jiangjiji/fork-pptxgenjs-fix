@@ -2830,10 +2830,8 @@ declare namespace PptxGenJS {
 export interface AddFontProps {
 	typeface: string
 	fontBlob: Blob
-	isRegular: boolean
 	isItalic: boolean
 	isBold: boolean
-	isBoldItalic: boolean
 }
 
 export interface FontInfo extends AddFontProps {

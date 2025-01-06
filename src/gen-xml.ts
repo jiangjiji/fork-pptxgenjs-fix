@@ -2313,14 +2313,14 @@ export function makeXmlPresentation (pres: IPresentationProps): string {
 				mergeFontList.push(mergeFont)
 			}
 
-			if (font.isRegular) {
-				mergeFont.fontRegular = font
+			if (font.isBold && font.isItalic) {
+				mergeFont.fontBoldItalic = font
 			} else if (font.isBold) {
 				mergeFont.fontBold = font
 			} else if (font.isItalic) {
 				mergeFont.fontItalic = font
-			} else if (font.isBoldItalic) {
-				mergeFont.fontBoldItalic = font
+			} else {
+				mergeFont.fontRegular = font
 			}
 		})
 
@@ -2337,10 +2337,18 @@ export function makeXmlPresentation (pres: IPresentationProps): string {
 			strXml += '<p:embeddedFont>'
 			strXml += `<p:font typeface="${fontFamliy.fontName}" />`
 
-			if (fontFamliy.fontRegular) { strXml += `<p:regular r:id="${fontFamliy.fontRegular.rId}"/>` }
-			if (fontFamliy.fontBold) { strXml += `<p:bold r:id="${fontFamliy.fontBold.rId}"/>` }
-			if (fontFamliy.fontItalic) { strXml += `<p:italic r:id="${fontFamliy.fontItalic.rId}"/>` }
-			if (fontFamliy.fontBoldItalic) { strXml += `<p:boldItalic r:id="${fontFamliy.fontBoldItalic.rId}"/>` }
+			if (fontFamliy.fontRegular) {
+				strXml += `<p:regular r:id="${fontFamliy.fontRegular.rId}"/>`
+			}
+			if (fontFamliy.fontBold) {
+				strXml += `<p:bold r:id="${fontFamliy.fontBold.rId}"/>`
+			}
+			if (fontFamliy.fontItalic) {
+				strXml += `<p:italic r:id="${fontFamliy.fontItalic.rId}"/>`
+			}
+			if (fontFamliy.fontBoldItalic) {
+				strXml += `<p:boldItalic r:id="${fontFamliy.fontBoldItalic.rId}"/>`
+			}
 
 			strXml += '</p:embeddedFont>'
 		})
