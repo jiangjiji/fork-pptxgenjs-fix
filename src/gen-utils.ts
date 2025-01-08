@@ -167,7 +167,7 @@ export function createTextShadow (options: ShadowProps): string {
 		type: 'outer',
 		offset: valToPts(options.offset || 0),
 		angle: Math.round((options.angle || 0) * 60000),
-		opacity: Math.round((options.opacity || 0.75) * 100000),
+		opacity: Math.round((options.opacity ?? 0.75) * 100000),
 		color: options.color || DEF_TEXT_SHADOW.color
 	}
 

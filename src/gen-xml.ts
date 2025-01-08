@@ -629,7 +629,7 @@ function slideObjectToXml (slide: PresSlide | SlideLayout): string {
 						(slideItemObj.options.shadow.angle || 0) * 60000,
 					)
 					slideItemObj.options.shadow.opacity = Math.round(
-						(slideItemObj.options.shadow.opacity || 0.75) * 100000,
+						(slideItemObj.options.shadow.opacity ?? 0.75) * 100000,
 					)
 					slideItemObj.options.shadow.color =
 						slideItemObj.options.shadow.color || DEF_TEXT_SHADOW.color

@@ -18,3 +18,7 @@ forked by [Maxpsc-PptxGenJS](https://github.com/Maxpsc/PptxGenJS)
 
 You need convert your fonts to **OpenType** format (`.otf` or `.ttf`) to `.ms-fontobject`. Here is the example [poi-font-mbender](https://github.com/kiwiwings/poi-font-mbender)
 
+
+## Todo
+
+- [ ] Add demo about embedding custom fonts
