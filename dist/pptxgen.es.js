@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.4 @ 2025-01-13T14:03:35.375Z */
+/* PptxGenJS 3.12.5 @ 2025-01-13T14:27:48.017Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -814,10 +814,17 @@ function createGradFillElement(options, innerElements) {
     var _a, _b;
     var gradientStopList = options.gradientStopList, gradientType = options.gradientType, flip = options.flip, rotWithShape = options.rotWithShape;
     var element = '';
-    element += "<a:gradFill ".concat(flip ? "flip=".concat(flip) : '', " rotWithShape=\"").concat(rotWithShape ? '1' : '0', "\">");
+    element += "<a:gradFill ".concat(flip ? "flip='".concat(flip, "'") : '', " rotWithShape=\"").concat(rotWithShape ? '1' : '0', "\">");
     if (gradientStopList.length > 0) {
         element += "<a:gsLst>";
-        element += gradientStopList.map(function (stop) { return "<a:gs pos=\"".concat(Math.round(stop.pos * 1000), "\">").concat(createColorElement(stop.color), "</a:gs>"); }).join('');
+        element += gradientStopList
+            .map(function (stop) {
+            var strXml = "<a:gs pos=\"".concat(Math.round(stop.pos * 1000), "\">").concat(createColorElement(stop.color));
+            strXml += "<a:alpha val=\"".concat(Math.round((100 - stop.transparency) * 1000), "\"/>");
+            strXml += '</a:gs>';
+            return strXml;
+        })
+            .join('');
         element += "</a:gsLst>";
     }
     switch (gradientType) {
