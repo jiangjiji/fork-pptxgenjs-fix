@@ -911,7 +911,6 @@ declare namespace PptxGenJS {
 	}
 	// 渐变填充
 	export interface GradColor {
-		type: 'grad'
 		gradientStopList?: Array<{ pos: number; color: Color }>
 		rotWithShape?: boolean
 		flip?: 'x' | 'y' | 'xy'
