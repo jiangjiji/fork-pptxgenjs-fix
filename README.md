@@ -10,7 +10,7 @@ forked by [Maxpsc-PptxGenJS](https://github.com/Maxpsc/PptxGenJS)
 ## Fixes
 
 * Add font family support regular/bold/italic/boldItalic
-
+* Add Gradient fill color and font color support 
 
 ## Information
 
@@ -22,3 +22,4 @@ You need convert your fonts to **OpenType** format (`.otf` or `.ttf`) to `.ms-fo
 ## Todo
 
 - [ ] Add demo about embedding custom fonts
+- [ ] Add demo about gradient fill color and font color
