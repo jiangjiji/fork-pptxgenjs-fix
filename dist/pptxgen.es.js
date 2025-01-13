@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.2 @ 2025-01-13T12:55:23.354Z */
+/* PptxGenJS 3.12.4 @ 2025-01-13T14:03:35.375Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -814,7 +814,7 @@ function createGradFillElement(options, innerElements) {
     var _a, _b;
     var gradientStopList = options.gradientStopList, gradientType = options.gradientType, flip = options.flip, rotWithShape = options.rotWithShape;
     var element = '';
-    element += "<a:gradFill flip=\"".concat(flip !== null && flip !== void 0 ? flip : 'y', "\" rotWithShape=\"").concat(rotWithShape ? '1' : '0', "\">");
+    element += "<a:gradFill ".concat(flip ? "flip=".concat(flip) : '', " rotWithShape=\"").concat(rotWithShape ? '1' : '0', "\">");
     if (gradientStopList.length > 0) {
         element += "<a:gsLst>";
         element += gradientStopList.map(function (stop) { return "<a:gs pos=\"".concat(Math.round(stop.pos * 1000), "\">").concat(createColorElement(stop.color), "</a:gs>"); }).join('');
@@ -5121,14 +5121,14 @@ var ImageSizingXml = {
  * @return {string} XML string with <p:cSld> as the root
  */
 function slideObjectToXml(slide) {
-    var _a;
+    var _a, _b;
     var strSlideXml = slide._name ? '<p:cSld name="' + slide._name + '">' : '<p:cSld>';
     var intTableNum = 1;
     // STEP 1: Add background color/image (ensure only a single `<p:bg>` tag is created, ex: when master-baskground has both `color` and `path`)
     if (slide._bkgdImgRid) {
         strSlideXml += "<p:bg><p:bgPr><a:blipFill dpi=\"0\" rotWithShape=\"1\"><a:blip r:embed=\"rId".concat(slide._bkgdImgRid, "\"><a:lum/></a:blip><a:srcRect/><a:stretch><a:fillRect/></a:stretch></a:blipFill><a:effectLst/></p:bgPr></p:bg>");
     }
-    else if ((_a = slide.background) === null || _a === void 0 ? void 0 : _a.color) {
+    else if (((_a = slide.background) === null || _a === void 0 ? void 0 : _a.color) || ((_b = slide.background) === null || _b === void 0 ? void 0 : _b.gradColor)) {
         strSlideXml += "<p:bg><p:bgPr>".concat(genXmlColorSelection(slide.background), "</p:bgPr></p:bg>");
     }
     else if (!slide.bkgd && slide._name && slide._name === DEF_PRES_LAYOUT_NAME) {
