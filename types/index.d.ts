@@ -90,17 +90,13 @@ declare class PptxGenJS {
 	 * @param {WriteBaseProps} props output properties
 	 * @returns {Promise<string | ArrayBuffer | Blob | Uint8Array>} file stream
 	 */
-	stream(
-		props?: PptxGenJS.WriteBaseProps,
-	): Promise<string | ArrayBuffer | Blob | Uint8Array>
+	stream(props?: PptxGenJS.WriteBaseProps): Promise<string | ArrayBuffer | Blob | Uint8Array>
 	/**
 	 * Export the current Presentation as JSZip content with the selected type
 	 * @param {WriteProps} props output properties
 	 * @returns {Promise<string | ArrayBuffer | Blob | Uint8Array>} file content in selected type
 	 */
-	write(
-		props?: PptxGenJS.WriteProps,
-	): Promise<string | ArrayBuffer | Blob | Uint8Array>
+	write(props?: PptxGenJS.WriteProps): Promise<string | ArrayBuffer | Blob | Uint8Array>
 	/**
 	 * Export the current Presentation. Writes file to local file system if `fs` exists, otherwise, initiates download in browsers
 	 * @param {WriteFileProps} props output file properties
@@ -156,12 +152,12 @@ declare namespace PptxGenJS {
 		'left' = 'left',
 		'center' = 'center',
 		'right' = 'right',
-		'justify' = 'justify',
+		'justify' = 'justify'
 	}
 	export enum AlignV {
 		'top' = 'top',
 		'middle' = 'middle',
-		'bottom' = 'bottom',
+		'bottom' = 'bottom'
 	}
 	export enum ChartType {
 		'area' = 'area',
@@ -173,7 +169,7 @@ declare namespace PptxGenJS {
 		'line' = 'line',
 		'pie' = 'pie',
 		'radar' = 'radar',
-		'scatter' = 'scatter',
+		'scatter' = 'scatter'
 	}
 	export enum OutputType {
 		'arraybuffer' = 'arraybuffer',
@@ -181,7 +177,7 @@ declare namespace PptxGenJS {
 		'binarystring' = 'binarystring',
 		'blob' = 'blob',
 		'nodebuffer' = 'nodebuffer',
-		'uint8array' = 'uint8array',
+		'uint8array' = 'uint8array'
 	}
 	/**
 	 * TODO: FUTURE: v4.0: rename to `SchemeColor`
@@ -196,7 +192,7 @@ declare namespace PptxGenJS {
 		'accent3' = 'accent3',
 		'accent4' = 'accent4',
 		'accent5' = 'accent5',
-		'accent6' = 'accent6',
+		'accent6' = 'accent6'
 	}
 	export enum ShapeType {
 		'accentBorderCallout1' = 'accentBorderCallout1',
@@ -376,7 +372,7 @@ declare namespace PptxGenJS {
 		'wave' = 'wave',
 		'wedgeEllipseCallout' = 'wedgeEllipseCallout',
 		'wedgeRectCallout' = 'wedgeRectCallout',
-		'wedgeRoundRectCallout' = 'wedgeRoundRectCallout',
+		'wedgeRoundRectCallout' = 'wedgeRoundRectCallout'
 	}
 	// used by charts, shape, text
 	export interface BorderOptions {
@@ -406,7 +402,7 @@ declare namespace PptxGenJS {
 		'LINE' = 'line',
 		'PIE' = 'pie',
 		'RADAR' = 'radar',
-		'SCATTER' = 'scatter',
+		'SCATTER' = 'scatter'
 	}
 	export enum shapes {
 		ACTION_BUTTON_BACK_OR_PREVIOUS = 'actionButtonBackPrevious',
@@ -591,17 +587,11 @@ declare namespace PptxGenJS {
 		UP_RIBBON = 'ribbon2',
 		U_TURN_ARROW = 'uturnArrow',
 		VERTICAL_SCROLL = 'verticalScroll',
-		WAVE = 'wave',
+		WAVE = 'wave'
 	}
 
 	// @source `core-enums.ts`
-	export type JSZIP_OUTPUT_TYPE =
-		| 'arraybuffer'
-		| 'base64'
-		| 'binarystring'
-		| 'blob'
-		| 'nodebuffer'
-		| 'uint8array'
+	export type JSZIP_OUTPUT_TYPE = 'arraybuffer' | 'base64' | 'binarystring' | 'blob' | 'nodebuffer' | 'uint8array'
 	export type WRITE_OUTPUT_TYPE = JSZIP_OUTPUT_TYPE | 'STREAM'
 	export enum CHART_TYPE {
 		'AREA' = 'area',
@@ -612,7 +602,7 @@ declare namespace PptxGenJS {
 		'LINE' = 'line',
 		'PIE' = 'pie',
 		'RADAR' = 'radar',
-		'SCATTER' = 'scatter',
+		'SCATTER' = 'scatter'
 	}
 	export enum SCHEME_COLOR_NAMES {
 		'TEXT1' = 'tx1',
@@ -624,36 +614,21 @@ declare namespace PptxGenJS {
 		'ACCENT3' = 'accent3',
 		'ACCENT4' = 'accent4',
 		'ACCENT5' = 'accent5',
-		'ACCENT6' = 'accent6',
+		'ACCENT6' = 'accent6'
 	}
 
 	// @source `core-interfaces.d.ts` (via import)
 	// @code `import { CHART_NAME, PLACEHOLDER_TYPES, SHAPE_NAME, SLIDE_OBJECT_TYPES, TEXT_HALIGN, TEXT_VALIGN, WRITE_OUTPUT_TYPE } from './core-enums'`
-	export type CHART_NAME =
-		| 'area'
-		| 'bar'
-		| 'bar3D'
-		| 'bubble'
-		| 'doughnut'
-		| 'line'
-		| 'pie'
-		| 'radar'
-		| 'scatter'
+	export type CHART_NAME = 'area' | 'bar' | 'bar3D' | 'bubble' | 'doughnut' | 'line' | 'pie' | 'radar' | 'scatter'
 	export enum PLACEHOLDER_TYPES {
 		'title' = 'title',
 		'body' = 'body',
 		'image' = 'pic',
 		'chart' = 'chart',
 		'table' = 'tbl',
-		'media' = 'media',
+		'media' = 'media'
 	}
-	export type PLACEHOLDER_TYPE =
-		| 'title'
-		| 'body'
-		| 'pic'
-		| 'chart'
-		| 'tbl'
-		| 'media'
+	export type PLACEHOLDER_TYPE = 'title' | 'body' | 'pic' | 'chart' | 'tbl' | 'media'
 
 	export type SHAPE_NAME =
 		| 'accentBorderCallout1'
@@ -845,18 +820,18 @@ declare namespace PptxGenJS {
 		'table' = 'table',
 		'tablecell' = 'tablecell',
 		'text' = 'text',
-		'notes' = 'notes',
+		'notes' = 'notes'
 	}
 	export enum TEXT_HALIGN {
 		'left' = 'left',
 		'center' = 'center',
 		'right' = 'right',
-		'justify' = 'justify',
+		'justify' = 'justify'
 	}
 	export enum TEXT_VALIGN {
 		'b' = 'b',
 		'ctr' = 'ctr',
-		't' = 't',
+		't' = 't'
 	}
 
 	// @source `core-interfaces.d.ts` (direct)
@@ -934,22 +909,21 @@ declare namespace PptxGenJS {
 		 */
 		src?: string
 	}
+	// 渐变填充
+	export interface GradColor {
+		type: 'grad'
+		gradientStopList?: Array<{ pos: number; color: Color }>
+		rotWithShape?: boolean
+		flip?: 'x' | 'y' | 'xy'
+		gradientType?: 'radial' | 'linear'
+		gradientProps?: { rot?: number; left?: number; right?: number; bottom?: number; top?: number; type?: string }
+	}
 	/**
 	 * Color in Hex format
 	 * @example 'FF3399'
 	 */
 	export type HexColor = string
-	export type ThemeColor =
-		| 'tx1'
-		| 'tx2'
-		| 'bg1'
-		| 'bg2'
-		| 'accent1'
-		| 'accent2'
-		| 'accent3'
-		| 'accent4'
-		| 'accent5'
-		| 'accent6'
+	export type ThemeColor = 'tx1' | 'tx2' | 'bg1' | 'bg2' | 'accent1' | 'accent2' | 'accent3' | 'accent4' | 'accent5' | 'accent6'
 	export type Color = HexColor | ThemeColor
 	export type Margin = number | [number, number, number, number]
 	export type HAlign = 'left' | 'center' | 'right' | 'justify'
@@ -1046,6 +1020,10 @@ declare namespace PptxGenJS {
 		 */
 		color?: Color
 		/**
+		 * Fill gradient color
+		 */
+		gradColor?: GradColor
+		/**
 		 * Transparency (percent)
 		 * - MS-PPT > Format Shape > Fill & Line > Fill > Transparency
 		 * - range: 0-100
@@ -1056,7 +1034,7 @@ declare namespace PptxGenJS {
 		 * Fill type
 		 * @default 'solid'
 		 */
-		type?: 'none' | 'solid'
+		type?: 'none' | 'solid' | 'gradient'
 
 		/**
 		 * Transparency (percent)
@@ -1074,26 +1052,12 @@ declare namespace PptxGenJS {
 		 * Dash type
 		 * @default 'solid'
 		 */
-		dashType?:
-			| 'solid'
-			| 'dash'
-			| 'dashDot'
-			| 'lgDash'
-			| 'lgDashDot'
-			| 'lgDashDotDot'
-			| 'sysDash'
-			| 'sysDot'
+		dashType?: 'solid' | 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'sysDash' | 'sysDot'
 		/**
 		 * Begin arrow type
 		 * @since v3.3.0
 		 */
-		beginArrowType?:
-			| 'none'
-			| 'arrow'
-			| 'diamond'
-			| 'oval'
-			| 'stealth'
-			| 'triangle'
+		beginArrowType?: 'none' | 'arrow' | 'diamond' | 'oval' | 'stealth' | 'triangle'
 		/**
 		 * End arrow type
 		 * @since v3.3.0
@@ -1106,15 +1070,7 @@ declare namespace PptxGenJS {
 		 * Dash type
 		 * @deprecated v3.3.0 - use `dashType`
 		 */
-		lineDash?:
-			| 'solid'
-			| 'dash'
-			| 'dashDot'
-			| 'lgDash'
-			| 'lgDashDot'
-			| 'lgDashDotDot'
-			| 'sysDash'
-			| 'sysDot'
+		lineDash?: 'solid' | 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'sysDash' | 'sysDot'
 		/**
 		 * @deprecated v3.3.0 - use `beginArrowType`
 		 */
@@ -1134,6 +1090,9 @@ declare namespace PptxGenJS {
 		 */
 		size?: number
 	}
+
+	export interface FontColorProps extends ShapeFillProps {}
+
 	// used by: chart, slide, table, text
 	export interface TextBaseProps {
 		/**
@@ -1233,13 +1192,9 @@ declare namespace PptxGenJS {
 					style?: string
 			  }
 		/**
-		 * Text color
-		 * - `HexColor` or `ThemeColor`
-		 * - MS-PPT > Format Shape > Text Options > Text Fill & Outline > Text Fill > Color
-		 * @example 'FF0000' // hex color (red)
-		 * @example pptx.SchemeColor.text1 // Theme color (Text1)
+		 * Font color
 		 */
-		color?: Color
+		fontColor?: FontColorProps
 		/**
 		 * Font face name
 		 * @example 'Arial' // Arial font
@@ -1364,10 +1319,7 @@ declare namespace PptxGenJS {
 	// image / media ==================================================================================
 	export type MediaType = 'audio' | 'online' | 'video'
 
-	export interface ImageProps
-		extends PositionProps,
-			DataOrPathProps,
-			ObjectNameProps {
+	export interface ImageProps extends PositionProps, DataOrPathProps, ObjectNameProps {
 		/**
 		 * Alt Text value ("How would you describe this object and its contents to someone who is blind?")
 		 * - PowerPoint: [right-click on an image] > "Edit Alt Text..."
@@ -1462,10 +1414,7 @@ declare namespace PptxGenJS {
 	 * Add media (audio/video) to slide
 	 * @requires either `link` or `path`
 	 */
-	export interface MediaProps
-		extends PositionProps,
-			DataOrPathProps,
-			ObjectNameProps {
+	export interface MediaProps extends PositionProps, DataOrPathProps, ObjectNameProps {
 		/**
 		 * Media type
 		 * - Use 'online' to embed a YouTube video (only supported in recent versions of PowerPoint)
@@ -1602,15 +1551,7 @@ declare namespace PptxGenJS {
 		/**
 		 * @deprecated v3.3.0
 		 */
-		lineDash?:
-			| 'dash'
-			| 'dashDot'
-			| 'lgDash'
-			| 'lgDashDot'
-			| 'lgDashDotDot'
-			| 'solid'
-			| 'sysDash'
-			| 'sysDot'
+		lineDash?: 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'solid' | 'sysDash' | 'sysDot'
 		/**
 		 * @deprecated v3.3.0
 		 */
@@ -1756,10 +1697,7 @@ declare namespace PptxGenJS {
 		 */
 		rowspan?: number
 	}
-	export interface TableProps
-		extends PositionProps,
-			TextBaseProps,
-			ObjectNameProps {
+	export interface TableProps extends PositionProps, TextBaseProps, ObjectNameProps {
 		//_arrObjTabHeadRows?: TableRow[]
 
 		/**
@@ -1878,11 +1816,7 @@ declare namespace PptxGenJS {
 		size: number
 	}
 
-	export interface TextPropsOptions
-		extends PositionProps,
-			DataOrPathProps,
-			TextBaseProps,
-			ObjectNameProps {
+	export interface TextPropsOptions extends PositionProps, DataOrPathProps, TextBaseProps, ObjectNameProps {
 		baseline?: number
 		/**
 		 * Character spacing
@@ -1983,14 +1917,7 @@ declare namespace PptxGenJS {
 		 * @default middle
 		 */
 		valign?: VAlign
-		vert?:
-			| 'eaVert'
-			| 'horz'
-			| 'mongolianVert'
-			| 'vert'
-			| 'vert270'
-			| 'wordArtVert'
-			| 'wordArtVertRtl'
+		vert?: 'eaVert' | 'horz' | 'mongolianVert' | 'vert' | 'vert270' | 'wordArtVert' | 'wordArtVertRtl'
 		/**
 		 * Text wrap
 		 * @since v3.3.0
@@ -2017,15 +1944,7 @@ declare namespace PptxGenJS {
 		 * Dash type
 		 * @deprecated v3.3.0 - use `line.dashType`
 		 */
-		lineDash?:
-			| 'solid'
-			| 'dash'
-			| 'dashDot'
-			| 'lgDash'
-			| 'lgDashDot'
-			| 'lgDashDotDot'
-			| 'sysDash'
-			| 'sysDot'
+		lineDash?: 'solid' | 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'sysDash' | 'sysDot'
 		/**
 		 * @deprecated v3.3.0 - use `line.beginArrowType`
 		 */
@@ -2310,16 +2229,7 @@ declare namespace PptxGenJS {
 		 */
 		valAxes?: IChartPropsAxisVal[]
 		valAxisCrossesAt?: number | 'autoZero'
-		valAxisDisplayUnit?:
-			| 'billions'
-			| 'hundredMillions'
-			| 'hundreds'
-			| 'hundredThousands'
-			| 'millions'
-			| 'tenMillions'
-			| 'tenThousands'
-			| 'thousands'
-			| 'trillions'
+		valAxisDisplayUnit?: 'billions' | 'hundredMillions' | 'hundreds' | 'hundredThousands' | 'millions' | 'tenMillions' | 'tenThousands' | 'thousands' | 'trillions'
 		valAxisDisplayUnitLabel?: boolean
 		valAxisHidden?: boolean
 		valAxisLabelColor?: string
@@ -2399,28 +2309,13 @@ declare namespace PptxGenJS {
 		 * - line dash type
 		 * @default solid
 		 */
-		lineDash?:
-			| 'dash'
-			| 'dashDot'
-			| 'lgDash'
-			| 'lgDashDot'
-			| 'lgDashDotDot'
-			| 'solid'
-			| 'sysDash'
-			| 'sysDot'
+		lineDash?: 'dash' | 'dashDot' | 'lgDash' | 'lgDashDot' | 'lgDashDotDot' | 'solid' | 'sysDash' | 'sysDot'
 		/**
 		 * MS-PPT > Chart format > Format Data Series > Marker Options > Built-in > Type
 		 * - marker type
 		 * @default circle
 		 */
-		lineDataSymbol?:
-			| 'circle'
-			| 'dash'
-			| 'diamond'
-			| 'dot'
-			| 'none'
-			| 'square'
-			| 'triangle'
+		lineDataSymbol?: 'circle' | 'dash' | 'diamond' | 'dot' | 'none' | 'square' | 'triangle'
 		/**
 		 * MS-PPT > Chart format > Format Data Series > [Marker Options] > Border > Color
 		 * - border color
@@ -2488,15 +2383,7 @@ declare namespace PptxGenJS {
 		 */
 		dataLabelFormatCode?: string
 		dataLabelFormatScatter?: 'custom' | 'customXY' | 'XY'
-		dataLabelPosition?:
-			| 'b'
-			| 'bestFit'
-			| 'ctr'
-			| 'l'
-			| 'r'
-			| 't'
-			| 'inEnd'
-			| 'outEnd'
+		dataLabelPosition?: 'b' | 'bestFit' | 'ctr' | 'l' | 'r' | 't' | 'inEnd' | 'outEnd'
 	}
 	export interface IChartPropsDataTable {
 		dataTableFontSize?: number
@@ -2656,12 +2543,7 @@ declare namespace PptxGenJS {
 		 */
 		bkgd?: string | BackgroundProps
 	}
-	export interface ObjectOptions
-		extends ImageProps,
-			PositionProps,
-			ShapeProps,
-			TableCellProps,
-			TextPropsOptions {
+	export interface ObjectOptions extends ImageProps, PositionProps, ShapeProps, TableCellProps, TextPropsOptions {
 		//_placeholderIdx?: number
 		//_placeholderType?: PLACEHOLDER_TYPE
 
@@ -2773,11 +2655,7 @@ declare namespace PptxGenJS {
 		 * @return {Slide} this Slide
 		 * @type {Function}
 		 */
-		addChart(
-			type: CHART_NAME | IChartMulti[],
-			data: any[],
-			options?: IChartOpts,
-		): Slide
+		addChart(type: CHART_NAME | IChartMulti[], data: any[], options?: IChartOpts): Slide
 		/**
 		 * Add image to Slide
 		 * @param {ImageProps} options - image options

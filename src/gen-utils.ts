@@ -3,7 +3,7 @@
  */
 
 import { EMU, REGEX_HEX_COLOR, DEF_FONT_COLOR, ONEPT, SchemeColor, SCHEME_COLORS, DEF_TEXT_SHADOW } from './core-enums'
-import { PresLayout, TextGlowProps, PresSlide, ShapeFillProps, Color, ShapeLineProps, Coord, ShadowProps } from './core-interfaces'
+import { PresLayout, TextGlowProps, PresSlide, ShapeFillProps, Color, ShapeLineProps, Coord, ShadowProps, GradColor, FontColorProps } from './core-interfaces'
 
 /**
  * Translates any type of `x`/`y`/`w`/`h` prop to EMU
@@ -16,7 +16,7 @@ import { PresLayout, TextGlowProps, PresSlide, ShapeFillProps, Color, ShapeLineP
  * @param {PresLayout} layout - presentation layout
  * @returns {number} calculated size
  */
-export function getSmartParseNumber (size: Coord, xyDir: 'X' | 'Y', layout: PresLayout): number {
+export function getSmartParseNumber(size: Coord, xyDir: 'X' | 'Y', layout: PresLayout): number {
 	// FIRST: Convert string numeric value if reqd
 	if (typeof size === 'string' && !isNaN(Number(size))) size = Number(size)
 
@@ -47,7 +47,7 @@ export function getSmartParseNumber (size: Coord, xyDir: 'X' | 'Y', layout: Pres
  * @param {string} uuidFormat - UUID format
  * @returns {string} UUID
  */
-export function getUuid (uuidFormat: string): string {
+export function getUuid(uuidFormat: string): string {
 	return uuidFormat.replace(/[xy]/g, function (c) {
 		const r = (Math.random() * 16) | 0
 		const v = c === 'x' ? r : (r & 0x3) | 0x8
@@ -60,7 +60,7 @@ export function getUuid (uuidFormat: string): string {
  * @param {string} xml - XML string to encode
  * @returns {string} escaped XML
  */
-export function encodeXmlEntities (xml: string): string {
+export function encodeXmlEntities(xml: string): string {
 	// NOTE: Dont use short-circuit eval here as value c/b "0" (zero) etc.!
 	if (typeof xml === 'undefined' || xml == null) return ''
 	return xml.toString().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')
@@ -71,7 +71,7 @@ export function encodeXmlEntities (xml: string): string {
  * @param {number|string} inches - as string or number
  * @returns {number} EMU value
  */
-export function inch2Emu (inches: number | string): number {
+export function inch2Emu(inches: number | string): number {
 	// NOTE: Provide Caller Safety: Numbers may get conv<->conv during flight, so be kind and do some simple checks to ensure inches were passed
 	// Any value over 100 damn sure isnt inches, so lets assume its in EMU already, therefore, just return the same value
 	if (typeof inches === 'number' && inches > 100) return inches
@@ -84,7 +84,7 @@ export function inch2Emu (inches: number | string): number {
  * @param {number|string} pt
  * @returns {number} value in points (`ONEPT`)
  */
-export function valToPts (pt: number | string): number {
+export function valToPts(pt: number | string): number {
 	const points = Number(pt) || 0
 	return isNaN(points) ? 0 : Math.round(points * ONEPT)
 }
@@ -94,7 +94,7 @@ export function valToPts (pt: number | string): number {
  * @param {number} d degrees
  * @returns {number} calculated `rot` value
  */
-export function convertRotationDegrees (d: number): number {
+export function convertRotationDegrees(d: number): number {
 	d = d || 0
 	return Math.round((d > 360 ? d - 360 : d) * 60000)
 }
@@ -104,7 +104,7 @@ export function convertRotationDegrees (d: number): number {
  * @param {number} c - component color
  * @returns {string} hex string
  */
-export function componentToHex (c: number): string {
+export function componentToHex(c: number): string {
 	const hex = c.toString(16)
 	return hex.length === 1 ? '0' + hex : hex
 }
@@ -116,7 +116,7 @@ export function componentToHex (c: number): string {
  * @param {number} b - blue value
  * @returns {string} XML string
  */
-export function rgbToHex (r: number, g: number, b: number): string {
+export function rgbToHex(r: number, g: number, b: number): string {
 	return (componentToHex(r) + componentToHex(g) + componentToHex(b)).toUpperCase()
 }
 
@@ -133,7 +133,7 @@ export function rgbToHex (r: number, g: number, b: number): string {
  * @param {string} innerElements - additional elements that adjust the color and are enclosed by the color element
  * @returns {string} XML string
  */
-export function createColorElement (colorStr: string | SCHEME_COLORS, innerElements?: string): string {
+export function createColorElement(colorStr: string | SCHEME_COLORS, innerElements?: string): string {
 	let colorVal = (colorStr || '').replace('#', '')
 
 	if (
@@ -159,7 +159,44 @@ export function createColorElement (colorStr: string | SCHEME_COLORS, innerEleme
 	return innerElements ? `<a:${tagName} ${colorAttr}>${innerElements}</a:${tagName}>` : `<a:${tagName} ${colorAttr}/>`
 }
 
-export function createTextShadow (options: ShadowProps): string {
+/**
+ * 创建渐变填充
+ * @param {GradFillColor} options 渐变填充参数
+ */
+export function createGradFillElement(options: GradColor, innerElements?: string) {
+	const { gradientStopList, gradientType, flip, rotWithShape } = options
+	let element = ''
+	element += `<a:gradFill flip="${flip ?? 'y'}" rotWithShape="${rotWithShape ? '1' : '0'}">`
+	if (gradientStopList.length > 0) {
+		element += `<a:gsLst>`
+		element += gradientStopList.map((stop) => `<a:gs pos="${Math.round(stop.pos * 1000)}">${createColorElement(stop.color)}</a:gs>`).join('')
+		element += `</a:gsLst>`
+	}
+	switch (gradientType) {
+		case 'linear': {
+			const rot = options?.gradientProps?.rot || 0
+			element += `<a:lin ang="${convertRotationDegrees(rot)}" scaled="0"/>`
+			break
+		}
+		case 'radial': {
+			const top = options?.gradientProps?.top || 0
+			const left = options?.gradientProps.left || 0
+			const bottom = options?.gradientProps.bottom || 0
+			const right = options?.gradientProps.right || 0
+			const type = options?.gradientProps.type || 'shape'
+			element += `<a:path path="${type}"><a:fillToRect l="${left}" t="${top}" r="${right}" b="${bottom}"/></a:path>`
+			break
+		}
+		default:
+			break
+	}
+	element += innerElements ? innerElements : ''
+	element += '</a:gradFill>'
+
+	return element
+}
+
+export function createTextShadow(options: ShadowProps): string {
 	let strXml = ''
 
 	const nOptions = {
@@ -186,7 +223,7 @@ export function createTextShadow (options: ShadowProps): string {
  * @see http://officeopenxml.com/drwSp-effects.php
  * { size: 8, color: 'FFFFFF', opacity: 0.75 };
  */
-export function createGlowElement (options: TextGlowProps, defaults: TextGlowProps): string {
+export function createGlowElement(options: TextGlowProps, defaults: TextGlowProps): string {
 	let strXml = ''
 	const opts = { ...defaults, ...options }
 	const size = Math.round(opts.size * ONEPT)
@@ -205,7 +242,7 @@ export function createGlowElement (options: TextGlowProps, defaults: TextGlowPro
  * @param {Color | ShapeFillProps | ShapeLineProps} props fill props
  * @returns XML string
  */
-export function genXmlColorSelection (props: Color | ShapeFillProps | ShapeLineProps): string {
+export function genXmlColorSelection(props: Color | ShapeFillProps | ShapeLineProps | FontColorProps): string {
 	let fillType = 'solid'
 	let colorVal = ''
 	let internalElements = ''
@@ -221,8 +258,13 @@ export function genXmlColorSelection (props: Color | ShapeFillProps | ShapeLineP
 		}
 
 		switch (fillType) {
+			case 'none':
+				return '<a:noFill/>'
 			case 'solid':
 				outText += `<a:solidFill>${createColorElement(colorVal, internalElements)}</a:solidFill>`
+				break
+			case 'gradient':
+				outText = createGradFillElement((props as ShapeFillProps).gradColor)
 				break
 			default: // @note need a statement as having only "break" is removed by rollup, then tiggers "no-default" js-linter
 				outText += ''
@@ -238,7 +280,7 @@ export function genXmlColorSelection (props: Color | ShapeFillProps | ShapeLineP
  * @param {PresSlide} target - the slide to use
  * @returns {number} count of all current rels plus 1 for the caller to use as its "rId"
  */
-export function getNewRelId (target: PresSlide): number {
+export function getNewRelId(target: PresSlide): number {
 	return target._rels.length + target._relsChart.length + target._relsMedia.length + 1
 }
 
@@ -246,7 +288,7 @@ export function getNewRelId (target: PresSlide): number {
  * Checks shadow options passed by user and performs corrections if needed.
  * @param {ShadowProps} ShadowProps - shadow options
  */
-export function correctShadowOptions (ShadowProps: ShadowProps): ShadowProps | undefined {
+export function correctShadowOptions(ShadowProps: ShadowProps): ShadowProps | undefined {
 	if (!ShadowProps || typeof ShadowProps !== 'object') {
 		// console.warn("`shadow` options must be an object. Ex: `{shadow: {type:'none'}}`")
 		return

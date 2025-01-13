@@ -79,18 +79,18 @@ export const PIECHART_COLORS: string[] = [
 	'B276B2',
 	'DECF3F',
 	'F15854',
-	'A7A7A7',
+	'A7A7A7'
 ]
 export enum TEXT_HALIGN {
 	'left' = 'left',
 	'center' = 'center',
 	'right' = 'right',
-	'justify' = 'justify',
+	'justify' = 'justify'
 }
 export enum TEXT_VALIGN {
 	'b' = 'b',
 	'ctr' = 'ctr',
-	't' = 't',
+	't' = 't'
 }
 
 export const SLDNUMFLDID = '{F7021451-1387-4CA6-816F-3879F97B5CBC}'
@@ -104,7 +104,7 @@ export enum OutputType {
 	'binarystring' = 'binarystring',
 	'blob' = 'blob',
 	'nodebuffer' = 'nodebuffer',
-	'uint8array' = 'uint8array',
+	'uint8array' = 'uint8array'
 }
 export enum ChartType {
 	'area' = 'area',
@@ -116,7 +116,7 @@ export enum ChartType {
 	'line' = 'line',
 	'pie' = 'pie',
 	'radar' = 'radar',
-	'scatter' = 'scatter',
+	'scatter' = 'scatter'
 }
 export enum ShapeType {
 	'accentBorderCallout1' = 'accentBorderCallout1',
@@ -297,7 +297,7 @@ export enum ShapeType {
 	'wave' = 'wave',
 	'wedgeEllipseCallout' = 'wedgeEllipseCallout',
 	'wedgeRectCallout' = 'wedgeRectCallout',
-	'wedgeRoundRectCallout' = 'wedgeRoundRectCallout',
+	'wedgeRoundRectCallout' = 'wedgeRoundRectCallout'
 }
 /**
  * TODO: FUTURE: v4.0: rename to `ThemeColor`
@@ -312,18 +312,18 @@ export enum SchemeColor {
 	'accent3' = 'accent3',
 	'accent4' = 'accent4',
 	'accent5' = 'accent5',
-	'accent6' = 'accent6',
+	'accent6' = 'accent6'
 }
 export enum AlignH {
 	'left' = 'left',
 	'center' = 'center',
 	'right' = 'right',
-	'justify' = 'justify',
+	'justify' = 'justify'
 }
 export enum AlignV {
 	'top' = 'top',
 	'middle' = 'middle',
-	'bottom' = 'bottom',
+	'bottom' = 'bottom'
 }
 
 export enum SHAPE_TYPE {
@@ -510,7 +510,7 @@ export enum SHAPE_TYPE {
 	UP_RIBBON = 'ribbon2',
 	U_TURN_ARROW = 'uturnArrow',
 	VERTICAL_SCROLL = 'verticalScroll',
-	WAVE = 'wave',
+	WAVE = 'wave'
 }
 export type SHAPE_NAME =
 	| 'accentBorderCallout1'
@@ -703,7 +703,7 @@ export enum CHART_TYPE {
 	'LINE' = 'line',
 	'PIE' = 'pie',
 	'RADAR' = 'radar',
-	'SCATTER' = 'scatter',
+	'SCATTER' = 'scatter'
 }
 
 export enum SCHEME_COLOR_NAMES {
@@ -716,7 +716,7 @@ export enum SCHEME_COLOR_NAMES {
 	'ACCENT3' = 'accent3',
 	'ACCENT4' = 'accent4',
 	'ACCENT5' = 'accent5',
-	'ACCENT6' = 'accent6',
+	'ACCENT6' = 'accent6'
 }
 
 export enum MASTER_OBJECTS {
@@ -725,7 +725,7 @@ export enum MASTER_OBJECTS {
 	'line' = 'line',
 	'rect' = 'rect',
 	'text' = 'text',
-	'placeholder' = 'placeholder',
+	'placeholder' = 'placeholder'
 }
 
 export enum SLIDE_OBJECT_TYPES {
@@ -738,7 +738,7 @@ export enum SLIDE_OBJECT_TYPES {
 	'table' = 'table',
 	'tablecell' = 'tablecell',
 	'text' = 'text',
-	'notes' = 'notes',
+	'notes' = 'notes'
 }
 export enum PLACEHOLDER_TYPES {
 	'title' = 'title',
@@ -746,7 +746,7 @@ export enum PLACEHOLDER_TYPES {
 	'image' = 'pic',
 	'chart' = 'chart',
 	'table' = 'tbl',
-	'media' = 'media',
+	'media' = 'media'
 }
 export type PLACEHOLDER_TYPE = 'title' | 'body' | 'pic' | 'chart' | 'tbl' | 'media'
 
@@ -759,7 +759,7 @@ export enum BULLET_TYPES {
 	'DEFAULT' = '&#x2022;',
 	'CHECK' = '&#x2713;',
 	'STAR' = '&#x2605;',
-	'TRIANGLE' = '&#x25B6;',
+	'TRIANGLE' = '&#x25B6;'
 }
 
 // IMAGES (base64)

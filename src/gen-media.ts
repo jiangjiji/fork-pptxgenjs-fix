@@ -10,17 +10,17 @@ import { PresSlide, SlideLayout, ISlideRelMedia } from './core-interfaces'
  * @param {PresSlide | SlideLayout} layout - slide layout
  * @return {Promise} promise
  */
-export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Promise<string>> {
+export function encodeSlideMediaRels(layout: PresSlide | SlideLayout): Array<Promise<string>> {
 	const fs = typeof require !== 'undefined' && typeof window === 'undefined' ? require('fs') : null // NodeJS
 	const https = typeof require !== 'undefined' && typeof window === 'undefined' ? require('https') : null // NodeJS
 	const imageProms: Array<Promise<string>> = []
 
 	// A: Capture all audio/image/video candidates for encoding (filtering online/pre-encoded)
-	const candidateRels = layout._relsMedia.filter(rel => rel.type !== 'online' && !rel.data && (!rel.path || (rel.path && !rel.path.includes('preencoded'))))
+	const candidateRels = layout._relsMedia.filter((rel) => rel.type !== 'online' && !rel.data && (!rel.path || (rel.path && !rel.path.includes('preencoded'))))
 
 	// B: PERF: Mark dupes (same `path`) so that we dont load same media over-and-over
 	const unqPaths: string[] = []
-	candidateRels.forEach(rel => {
+	candidateRels.forEach((rel) => {
 		if (!unqPaths.includes(rel.path)) {
 			rel.isDuplicate = false
 			unqPaths.push(rel.path)
@@ -31,8 +31,8 @@ export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Pr
 
 	// C: Read/Encode each unique audio/image/video path
 	candidateRels
-		.filter(rel => !rel.isDuplicate)
-		.forEach(rel => {
+		.filter((rel) => !rel.isDuplicate)
+		.forEach((rel) => {
 			imageProms.push(
 				new Promise((resolve, reject) => {
 					if (fs && rel.path.indexOf('http') !== 0) {
@@ -40,11 +40,11 @@ export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Pr
 						try {
 							const bitmap = fs.readFileSync(rel.path)
 							rel.data = Buffer.from(bitmap).toString('base64')
-							candidateRels.filter(dupe => dupe.isDuplicate && dupe.path === rel.path).forEach(dupe => (dupe.data = rel.data))
+							candidateRels.filter((dupe) => dupe.isDuplicate && dupe.path === rel.path).forEach((dupe) => (dupe.data = rel.data))
 							resolve('done')
 						} catch (ex) {
 							rel.data = IMG_BROKEN
-							candidateRels.filter(dupe => dupe.isDuplicate && dupe.path === rel.path).forEach(dupe => (dupe.data = rel.data))
+							candidateRels.filter((dupe) => dupe.isDuplicate && dupe.path === rel.path).forEach((dupe) => (dupe.data = rel.data))
 							reject(new Error(`ERROR: Unable to read media: "${rel.path}"\n${String(ex)}`))
 						}
 					} else if (fs && https && rel.path.indexOf('http') === 0) {
@@ -54,12 +54,12 @@ export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Pr
 							res.on('data', (chunk: string) => (rawData += chunk))
 							res.on('end', () => {
 								rel.data = Buffer.from(rawData, 'binary').toString('base64')
-								candidateRels.filter(dupe => dupe.isDuplicate && dupe.path === rel.path).forEach(dupe => (dupe.data = rel.data))
+								candidateRels.filter((dupe) => dupe.isDuplicate && dupe.path === rel.path).forEach((dupe) => (dupe.data = rel.data))
 								resolve('done')
 							})
 							res.on('error', (_ex) => {
 								rel.data = IMG_BROKEN
-								candidateRels.filter(dupe => dupe.isDuplicate && dupe.path === rel.path).forEach(dupe => (dupe.data = rel.data))
+								candidateRels.filter((dupe) => dupe.isDuplicate && dupe.path === rel.path).forEach((dupe) => (dupe.data = rel.data))
 								reject(new Error(`ERROR! Unable to load image (https.get): ${rel.path}`))
 							})
 						})
@@ -71,7 +71,7 @@ export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Pr
 							const reader = new FileReader()
 							reader.onloadend = () => {
 								rel.data = reader.result
-								candidateRels.filter(dupe => dupe.isDuplicate && dupe.path === rel.path).forEach(dupe => (dupe.data = rel.data))
+								candidateRels.filter((dupe) => dupe.isDuplicate && dupe.path === rel.path).forEach((dupe) => (dupe.data = rel.data))
 								if (!rel.isSvgPng) {
 									resolve('done')
 								} else {
@@ -79,16 +79,16 @@ export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Pr
 										.then(() => {
 											resolve('done')
 										})
-										.catch(ex => {
+										.catch((ex) => {
 											reject(ex)
 										})
 								}
 							}
 							reader.readAsDataURL(xhr.response)
 						}
-						xhr.onerror = ex => {
+						xhr.onerror = (ex) => {
 							rel.data = IMG_BROKEN
-							candidateRels.filter(dupe => dupe.isDuplicate && dupe.path === rel.path).forEach(dupe => (dupe.data = rel.data))
+							candidateRels.filter((dupe) => dupe.isDuplicate && dupe.path === rel.path).forEach((dupe) => (dupe.data = rel.data))
 							reject(new Error(`ERROR! Unable to load image (xhr.onerror): ${rel.path}`))
 						}
 
@@ -103,8 +103,8 @@ export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Pr
 
 	// B: SVG: base64 data still requires a png to be generated (`isSvgPng` flag this as the preview image, not the SVG itself)
 	layout._relsMedia
-		.filter(rel => rel.isSvgPng && rel.data)
-		.forEach(rel => {
+		.filter((rel) => rel.isSvgPng && rel.data)
+		.forEach((rel) => {
 			if (fs) {
 				// console.log('Sorry, SVG is not supported in Node (more info: https://github.com/gitbrent/PptxGenJS/issues/401)')
 				rel.data = IMG_BROKEN
@@ -122,7 +122,7 @@ export function encodeSlideMediaRels (layout: PresSlide | SlideLayout): Array<Pr
  * @param {ISlideRelMedia} rel - slide rel
  * @return {Promise} promise
  */
-async function createSvgPngPreview (rel: ISlideRelMedia): Promise<string> {
+async function createSvgPngPreview(rel: ISlideRelMedia): Promise<string> {
 	return await new Promise((resolve, reject) => {
 		// A: Create
 		const image = new Image()
@@ -149,7 +149,7 @@ async function createSvgPngPreview (rel: ISlideRelMedia): Promise<string> {
 			}
 			canvas = null
 		}
-		image.onerror = ex => {
+		image.onerror = (ex) => {
 			rel.data = IMG_BROKEN
 			reject(new Error(`ERROR! Unable to load image (image.onerror): ${rel.path}`))
 		}
@@ -163,7 +163,7 @@ async function createSvgPngPreview (rel: ISlideRelMedia): Promise<string> {
  * FIXME: TODO: currently unused
  * TODO: Should return a Promise
  */
-function getSizeFromImage (inImgUrl: string): { width: number, height: number } {
+function getSizeFromImage(inImgUrl: string): { width: number; height: number } {
 	const sizeOf = typeof require !== 'undefined' ? require('sizeof') : null // NodeJS
 
 	if (sizeOf) {
