@@ -166,7 +166,7 @@ export function createColorElement(colorStr: string | SCHEME_COLORS, innerElemen
 export function createGradFillElement(options: GradColor, innerElements?: string) {
 	const { gradientStopList, gradientType, flip, rotWithShape } = options
 	let element = ''
-	element += `<a:gradFill flip="${flip ?? 'y'}" rotWithShape="${rotWithShape ? '1' : '0'}">`
+	element += `<a:gradFill ${flip ? `flip=${flip}` : ''} rotWithShape="${rotWithShape ? '1' : '0'}">`
 	if (gradientStopList.length > 0) {
 		element += `<a:gsLst>`
 		element += gradientStopList.map((stop) => `<a:gs pos="${Math.round(stop.pos * 1000)}">${createColorElement(stop.color)}</a:gs>`).join('')
