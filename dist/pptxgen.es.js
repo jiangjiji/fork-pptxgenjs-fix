@@ -1,4 +1,4 @@
-/* PptxGenJS 3.12.5 @ 2025-01-13T14:27:48.017Z */
+/* PptxGenJS 3.12.6 @ 2025-01-13T14:39:09.616Z */
 import JSZip from 'jszip';
 
 /******************************************************************************
@@ -819,10 +819,8 @@ function createGradFillElement(options, innerElements) {
         element += "<a:gsLst>";
         element += gradientStopList
             .map(function (stop) {
-            var strXml = "<a:gs pos=\"".concat(Math.round(stop.pos * 1000), "\">").concat(createColorElement(stop.color));
-            strXml += "<a:alpha val=\"".concat(Math.round((100 - stop.transparency) * 1000), "\"/>");
-            strXml += '</a:gs>';
-            return strXml;
+            var insertXML = "<a:alpha val=\"".concat(Math.round((100 - stop.transparency) * 1000), "\"/>");
+            return "<a:gs pos=\"".concat(Math.round(stop.pos * 1000), "\">").concat(createColorElement(stop.color, insertXML), "</a:gs>");
         })
             .join('');
         element += "</a:gsLst>";

@@ -171,10 +171,8 @@ export function createGradFillElement(options: GradColor, innerElements?: string
 		element += `<a:gsLst>`
 		element += gradientStopList
 			.map((stop) => {
-				let strXml = `<a:gs pos="${Math.round(stop.pos * 1000)}">${createColorElement(stop.color)}`
-				strXml += `<a:alpha val="${Math.round((100 - stop.transparency) * 1000)}"/>`
-				strXml += '</a:gs>'
-				return strXml
+				const insertXML = `<a:alpha val="${Math.round((100 - stop.transparency) * 1000)}"/>`
+				return `<a:gs pos="${Math.round(stop.pos * 1000)}">${createColorElement(stop.color, insertXML)}</a:gs>`
 			})
 			.join('')
 		element += `</a:gsLst>`
